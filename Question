@@ -1,0 +1,56 @@
+I have the following tables: 
+(Example data)
+```
+PMProjects
+
+| ContractID | ContractCD | Customer     |
+| :--------  | :----------| :-------     |
+| 01         | PR00001    | ABC-Customer |
+| 02         | PR00002    | XYZ-Customer |
+
+```
+
+```
+PMTasks
+
+| Task ID  | Project ID| Task CD   | Description |
+| :--------| :---------| :---------| :--------   |
+| 39       | 01        | 01 First  | Zulu        |
+| 40       | 01        | 02 Second | Foxtrot     |
+| 41       | 01        | 03 Third  | Delta       |
+| 42       | 01        | 04 Fourth | Alpha       | 
+| 55       | 02        | 01 First  | Zulu        |
+| 56       | 02        | 02 Second | Foxtrot     |
+| 57       | 02        | 03 Third  | Delta       |
+| 58       | 02        | 04 Fourth | Alpha       | 
+```
+
+I have successfully joined PMTasks to PMProjects on PMProjects.ContractID = PMTasks.ProjectID. 
+And, I am grouping by PMProjects.ContractID  
+
+**On the GI, I need to display the MIN TaskID row for each Project.**
+
+[My GI - Aggregate Functions by MIN value][1]
+
+**Result - 
+When I use the MIN value on the PMTasks.Description field it pulls the value "Alpha".** 
+```
+GI Results
+
+| ContractID | ContractCD | Customer     | Task ID  |  Task CD  | Description |
+| :--------- | :--------- | :----------- | :------- | :-------- | :---------- | 
+| 01         | PR00001    | ABC-Customer | 39       | 01 First  | Alpha       |
+| 02         | PR00002    | XYZ-Customer | 55       | 01 First  | Alpha       |
+```
+
+[Documentation - Aggregate Function Descriptions][2] 
+
+I see from the documentation that the MIN aggregate function, "Returns the minimum value of all values of the group."
+
+Has anyone found a way to join many-to-one in an Acumatica Generic Inquiry using the MIN (or MAX) value of a row? 
+Or to put it a different way - has anyone found a way to join one of many rows to a table and have the results grid display only the values from the same row? 
+
+I hope this makes sense. Please feel free to ask any clarification questions. 
+Thanks for any and all feedback. 
+  [1]: https://i.stack.imgur.com/tPv9W.png
+  [2]: https://i.stack.imgur.com/PV0vW.png
